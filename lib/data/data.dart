@@ -1,6 +1,3 @@
-import 'package:vegetables/utility/app_utils.dart';
-import 'package:vegetables/model/vegetable_model.dart';
-
 import '../model/vegetable_model.dart';
 import '../utility/app_utils.dart';
 
@@ -31,10 +28,7 @@ List<Vegetable> vegetables = [
     title: "Zucchini",
     subtitle: "Versatile and Low-Calorie",
     image: "Zucchini",
-    gradientColors: [
-      colorZucchiniLight,
-      colorZucchiniDark
-    ],
+    gradientColors: [colorZucchiniLight, colorZucchiniDark],
     description: """
          Zucchini plants require well-drained soil and plenty of sunlight. They are typically grown from seeds, yielding abundant harvests during the summer months.
          
@@ -54,7 +48,10 @@ List<Vegetable> vegetables = [
       title: "Tomatoes",
       subtitle: "Juicy and Versatile",
       image: "Tomatoes",
-      gradientColors: [colorTomatoesLight, colorBellPaperDark],
+      gradientColors: [
+        colorTomatoesLight,
+        colorBellPaperDark
+      ],
       description: """
        Tomatoes thrive in warm, sunny conditions. Plant tomato seedlings or transplants after the last frost date in your area. They require well-drained soil and benefit from support as they grow.
        

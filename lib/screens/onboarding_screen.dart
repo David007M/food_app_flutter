@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/data/data.dart';
+
+import '../widget/start_button_widget.dart';
+
+int _currentPage = 0;
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -13,17 +18,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       body: SafeArea(
         child: PageView.builder(
-          itemCount: 3,
-          itemBuilder: (context, index){
+          itemCount: 4,
+          itemBuilder: (context, index) {
             return Center(
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.95,
-                height: MediaQuery.of(context).size.height *0.85,
+                height: MediaQuery.of(context).size.height * 0.85,
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  gradient: const LinearGradient(
-                    colors: [Colors.black, Colors.grey],
-                    begin: Alignment.topRight,
+                  gradient: LinearGradient(
+                    colors: vegetables[index].gradientColors,
+                    begin: Alignment.topCenter,
                     end: Alignment.bottomLeft,
                   ),
                   borderRadius: BorderRadius.circular(35),
@@ -31,36 +36,79 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/Bell Peppers.png'),
+                    Image.asset(
+                      'assets/${vegetables[index].image}.png',
+                    ),
                     const SizedBox(
                       height: 30,
                     ),
-                    const Text("Bell Peppers", style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    Text(
+                      vegetables[index].title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: Text(
-                        "Some Information about the vegetable. Some Information about the vegetable. Some Information about the vegetable",
+                        vegetables[index].headline,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                         ),
                       ),
                     ),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    // get start button
+                    _currentPage == 3 ? const StartButton() : Container(),
+
+                    _currentPage == 3
+                        ? const SizedBox(
+                            height: 20,
+                          )
+                        : Container(),
+
+                    // page indicator
+                    buildPageIndicator(),
                   ],
                 ),
               ),
             );
           },
+          onPageChanged: (int page) {
+            setState(() {
+              _currentPage = page;
+            });
+          },
         ),
       ),
     );
   }
+}
+
+Widget buildPageIndicator() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: List<Widget>.generate(
+      4,
+      (index) {
+        return Container(
+          width: 10,
+          height: 10,
+          margin: const EdgeInsets.symmetric(horizontal: 4.0),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _currentPage == index ? Colors.white : Colors.grey.shade600,
+          ),
+        );
+      },
+    ),
+  );
 }
