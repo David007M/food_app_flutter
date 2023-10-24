@@ -40,7 +40,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       'assets/${vegetables[index].image}.png',
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     Text(
                       vegetables[index].title,
@@ -48,6 +48,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         color: Colors.white,
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
+                        shadows: [
+                          BoxShadow(
+                            color: Color.fromRGBO(0, 0, 0, 0.3),
+                            blurRadius: 3,
+                            offset: Offset(2, 2),
+                          )
+                        ],
                       ),
                     ),
                     const SizedBox(
@@ -64,7 +71,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 80,
+                      height: 50,
                     ),
                     // get start button
                     _currentPage == 3 ? const StartButton() : Container(),

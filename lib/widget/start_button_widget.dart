@@ -22,7 +22,6 @@ class StartButton extends StatelessWidget {
           padding: const MaterialStatePropertyAll<EdgeInsetsGeometry>(
             EdgeInsets.symmetric(
               horizontal: 15,
-              vertical: 10,
             ),
           ),
           shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
